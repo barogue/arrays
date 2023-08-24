@@ -9,7 +9,7 @@ if (!function_exists('array_at')) {
      *
      * @return mixed
      */
-    function array_at(array $array, int $index)
+    function array_at(array $array, int $index): mixed
     {
         if ($index < 0) {
             $index = count($array) + $index;
@@ -68,14 +68,14 @@ if (!function_exists('array_exists')) {
      * Determine if a key exists in an array using dot notation for nested sets
      *
      * @param array $array
-     * @param string|int $key
+     * @param int|string $key
      *
      * @return bool
      *
      * @see array_key_exists()
      * @link https://www.php.net/manual/en/function.array-key-exists.php
      */
-    function array_exists(array $array, $key): bool
+    function array_exists(array $array, int|string $key): bool
     {
         foreach (explode('.', $key) as $key) {
             if (!is_array($array) || !array_key_exists($key, $array)) {
@@ -95,7 +95,7 @@ if (!function_exists('array_first')) {
      *
      * @return mixed
      */
-    function array_first(array $array)
+    function array_first(array $array): mixed
     {
         $array1 = array_slice($array, 0, 1);
         return array_pop($array1);
@@ -108,11 +108,11 @@ if (!function_exists('array_get')) {
      *
      * @param array $array
      * @param string $key
-     * @param mixed $default
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    function array_get(array $array, string $key, $default = null)
+    function array_get(array $array, string $key, mixed $default = null): mixed
     {
         foreach (explode('.', $key) as $key) {
             if (!isset($array[$key])) {
@@ -175,7 +175,7 @@ if (!function_exists('array_key_at')) {
      *
      * @return int|string|null
      */
-    function array_key_at(array $array, int $index)
+    function array_key_at(array $array, int $index): int|string|null
     {
         if ($index < 0) {
             $index = count($array) + $index;
@@ -192,7 +192,7 @@ if (!function_exists('array_last')) {
      *
      * @return mixed
      */
-    function array_last(array $array)
+    function array_last(array $array): mixed
     {
         $array1 = array_slice($array, -1, 1);
         return array_pop($array1);
@@ -223,7 +223,7 @@ if (!function_exists('array_pull')) {
      *
      * @return mixed
      */
-    function array_pull(array &$array, string $key)
+    function array_pull(array &$array, string $key): mixed
     {
         $keys = explode('.', $key);
         $final = array_pop($keys);
@@ -248,7 +248,7 @@ if (!function_exists('array_random')) {
      *
      * @return mixed|array
      */
-    function array_random(array $array, int $num = 1)
+    function array_random(array $array, int $num = 1): mixed
     {
         $key = empty($array) || $num > count($array) ? null : @array_rand($array, $num);
         if ($key === null) {
@@ -271,7 +271,7 @@ if (!function_exists('array_set')) {
      *
      * @return void
      */
-    function array_set(array &$array, string $key, $value)
+    function array_set(array &$array, string $key, mixed $value)
     {
         foreach (explode('.', $key) as $key) {
             $array = &$array[$key];
