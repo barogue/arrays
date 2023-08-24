@@ -97,7 +97,6 @@ Below you can find links to the documentation for the new features.
 | [array_first](documentation/array_first.md)     | Get the first item from the array                                                                         |
 | [array_get](documentation/array_exists.md)      | Returns a value from the array, using dot notation for nested sets                                        |
 | [array_inflate](documentation/array_inflate.md) | Expands a flattened array back into a nested array                                                        |
-| [array_is_list](documentation/array_is_list.md) | Checks whether a given array is a list                                                                    |
 | [array_join](documentation/array_join.md)       | Joins entries of array into a string using optional glue substring and optional final glue substring      |
 | [array_key_at](documentation/array_key_at.md)   | Get the nth key from an array                                                                             |
 | [array_last](documentation/array_last.md)       | Get the last entry in the array                                                                           |
