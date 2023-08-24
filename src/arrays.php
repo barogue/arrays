@@ -162,7 +162,7 @@ if (!function_exists('array_join')) {
             return implode($glue, $array);
         }
         $last = array_pop($array);
-        return implode($finalGlue, [implode($glue, $array), $last]);
+        return implode($glue, $array).$finalGlue.$last;
     }
 }
 

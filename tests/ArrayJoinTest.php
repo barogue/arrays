@@ -47,4 +47,15 @@ class ArrayJoinTest extends TestCase
         $this->assertSame('a, b, c, d', array_join(['a', 'b', 'c', 'd'], ', '));
         $this->assertSame('a, b, c and d', array_join(['a', 'b', 'c', 'd'], ', ', ' and '));
     }
+
+    public function testArrayIsUnharmed()
+    {
+        $array = [1, 2, 3, 4];
+        array_join($array, '+', '-');
+        $this->assertEquals([1, 2, 3, 4], $array);
+
+        $array = [1];
+        array_join($array, '+', '-');
+        $this->assertEquals([1], $array);
+    }
 }
