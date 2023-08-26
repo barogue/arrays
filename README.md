@@ -104,4 +104,5 @@ Below you can find links to the documentation for the new features.
 | [array_pull](documentation/array_pull.md)       | Return and remove a key in the array using dot notation for nested arrays                                 |
 | [array_random](documentation/array_random.md)   | Picks one or more random entries out of an array, and returns the value (or values) of the random entries |
 | [array_set](documentation/array_set.md)         | Set a key in the array using dot notation for nested arrays                                               |
+| [array_shuffle](documentation/array_shuffle.md) | Shuffle an array, with an option to maintain keys or not                                                  |
 | [array_unset](documentation/array_unset.md)     | Remove a key in the array using dot notation for nested arrays                                            |

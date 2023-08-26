@@ -280,6 +280,31 @@ if (!function_exists('array_set')) {
     }
 }
 
+if (!function_exists('array_shuffle')) {
+    /**
+     * Shuffle an array while optionally keeping the keys intact
+     *
+     * @param array $array
+     * @param bool $keepKeys
+     *
+     * @return array
+     */
+    function array_shuffle(array $array, bool $keepKeys = true): array
+    {
+        if (!$keepKeys) {
+            shuffle($array);
+            return $array;
+        }
+        $keys = array_keys($array);
+        shuffle($keys);
+        $result = [];
+        foreach ($keys as $key) {
+            $result[$key] = $array[$key];
+        }
+        return $result;
+    }
+}
+
 if (!function_exists('array_unset')) {
     /**
      * Remove a value from the array using dot notation for nested sets
