@@ -2,8 +2,10 @@
 
 Get the first item from an array
 
+If a callback is provided, then get the first value that causes the callback to return true.
+
 ```php
-array_first(array $array): mixed
+function array_first(array $array, callable $callback = null, mixed $default = null): mixed
 ```
 
 ## Parameters
@@ -12,9 +14,17 @@ array_first(array $array): mixed
 
 The input array
 
+**callback**
+
+If provided, then each item is checked against the callback. The first to make it return true is returned.
+
+**default**
+
+If no value can be returned, then this value will be returned instead.
+
 ## Returns
 
-The first item in the array or null for an empty array
+The first item in the array or first item to match the callback or `$default` if no value is found.
 
 ## Examples
 
@@ -42,4 +52,17 @@ The above example will output:
 
 ```
 1
+```
+
+**Example # 3 an array with callback**
+
+```php
+$array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+echo array_first($array, fn ($value) => $value >= 5);
+```
+
+The above example will output:
+
+```
+5
 ```

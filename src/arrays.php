@@ -91,14 +91,67 @@ if (!function_exists('array_first')) {
     /**
      * Get the first value from an array
      *
+     * If a callback is provided, then returns the first value that causes the callback to return true
+     *
      * @param array $array
+     * @param callable|null $callback
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    function array_first(array $array): mixed
+    function array_first(array $array, callable $callback = null, mixed $default = null): mixed
     {
-        $array1 = array_slice($array, 0, 1);
-        return array_pop($array1);
+        if (empty($array)) {
+            return $default;
+        }
+
+        if ($callback === null) {
+            foreach ($array as $item) {
+                return $item;
+            }
+        }
+
+        foreach ($array as $key => $value) {
+            if ($callback($value, $key)) {
+                return $value;
+            }
+        }
+
+        return $default;
+    }
+}
+
+if (!function_exists('array_first_key')) {
+    /**
+     * Get the first key from an array
+     *
+     * If a callback is provided, then returns the first key that causes the callback to return true
+     *
+     * @param array $array
+     * @param callable|null $callback
+     * @param mixed|null $default
+     *
+     * @return mixed
+     */
+    function array_first_key(array $array, callable $callback = null, mixed $default = null): mixed
+    {
+        if (empty($array)) {
+            return $default;
+        }
+
+        if ($callback === null) {
+            foreach ($array as $key => $item) {
+                return $key;
+            }
+        }
+
+        foreach ($array as $key => $value) {
+            if ($callback($key)) {
+                return $key;
+            }
+        }
+
+        return $default;
     }
 }
 
@@ -188,14 +241,71 @@ if (!function_exists('array_last')) {
     /**
      * Get the last value from an array
      *
+     * If a callback is provided, then returns the last value that causes the callback to return true
+     *
      * @param array $array
+     * @param callable|null $callback
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    function array_last(array $array): mixed
+    function array_last(array $array, callable $callback = null, mixed $default = null): mixed
     {
-        $array1 = array_slice($array, -1, 1);
-        return array_pop($array1);
+        if (empty($array)) {
+            return $default;
+        }
+
+        $reversedArray = array_reverse($array, true);
+
+        if ($callback === null) {
+            foreach ($reversedArray as $item) {
+                return $item;
+            }
+        }
+
+        foreach ($reversedArray as $key => $value) {
+            if ($callback($value, $key)) {
+                return $value;
+            }
+        }
+
+        return $default;
+    }
+}
+
+if (!function_exists('array_last_key')) {
+    /**
+     * Get the last key from an array
+     *
+     * If a callback is provided, then returns the last key that causes the callback to return true
+     *
+     * @param array $array
+     * @param callable|null $callback
+     * @param mixed|null $default
+     *
+     * @return mixed
+     */
+    function array_last_key(array $array, callable $callback = null, mixed $default = null): mixed
+    {
+        if (empty($array)) {
+            return $default;
+        }
+
+        $reversedArray = array_reverse($array, true);
+
+        if ($callback === null) {
+            foreach ($reversedArray as $key => $item) {
+                return $key;
+            }
+        }
+
+        foreach ($reversedArray as $key => $value) {
+            if ($callback($key)) {
+                return $key;
+            }
+        }
+
+        return $default;
     }
 }
 

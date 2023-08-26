@@ -2,8 +2,6 @@
 
 namespace Barogue\Arrays\Tests;
 
-use function array_get;
-use function array_set;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,6 +11,19 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayFirstTest extends TestCase
 {
+    public function testCursorIndependent()
+    {
+        $array = [1, 2, 3, 4];
+        next($array);
+        $this->assertSame(1, array_first($array));
+    }
+
+    public function testEmptyArrayReturnsDefault()
+    {
+        $array = [];
+        $this->assertSame('test', array_first($array, null, 'test'));
+    }
+
     public function testEmptyArrayReturnsNull()
     {
         $array = [];
@@ -32,10 +43,24 @@ class ArrayFirstTest extends TestCase
         $this->assertEquals([1, 2, 3, 4], $array);
     }
 
-    public function testCursorIndependent()
+    public function testWithCallback()
     {
         $array = [1, 2, 3, 4];
-        next($array);
-        $this->assertSame(1, array_first($array));
+        $this->assertSame(3, array_first($array, function ($value) {
+            return $value > 2;
+        }));
+        $this->assertEquals([1, 2, 3, 4], $array);
+    }
+
+    public function testWithCallbackDefault()
+    {
+        $array = [1, 2, 3, 4];
+        $this->assertSame(null, array_first($array, function ($value) {
+            return $value > 10;
+        }));
+        $this->assertSame('test', array_first($array, function ($value) {
+            return $value > 10;
+        }, 'test'));
+        $this->assertEquals([1, 2, 3, 4], $array);
     }
 }
