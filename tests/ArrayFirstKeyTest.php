@@ -46,8 +46,8 @@ class ArrayFirstKeyTest extends TestCase
     public function testWithCallback()
     {
         $array = [1, 2, 3, 4];
-        $this->assertSame(3, array_first_key($array, function ($value) {
-            return $value > 2;
+        $this->assertSame(3, array_first_key($array, function ($value, $key) {
+            return $key > 2;
         }));
         $this->assertEquals([1, 2, 3, 4], $array);
     }
@@ -55,12 +55,21 @@ class ArrayFirstKeyTest extends TestCase
     public function testWithCallbackDefault()
     {
         $array = [1, 2, 3, 4];
-        $this->assertSame(null, array_first_key($array, function ($value) {
-            return $value > 10;
+        $this->assertSame(null, array_first_key($array, function ($value, $key) {
+            return $key > 10;
         }));
-        $this->assertSame('test', array_first_key($array, function ($value) {
-            return $value > 10;
+        $this->assertSame('test', array_first_key($array, function ($value, $key) {
+            return $key > 10;
         }, 'test'));
+        $this->assertEquals([1, 2, 3, 4], $array);
+    }
+
+    public function testWithCallbackMatchValue()
+    {
+        $array = [1, 2, 3, 4];
+        $this->assertSame(2, array_first_key($array, function ($value) {
+            return $value > 2;
+        }));
         $this->assertEquals([1, 2, 3, 4], $array);
     }
 }

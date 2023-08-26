@@ -146,7 +146,7 @@ if (!function_exists('array_first_key')) {
         }
 
         foreach ($array as $key => $value) {
-            if ($callback($key)) {
+            if ($callback($value, $key)) {
                 return $key;
             }
         }
@@ -300,7 +300,7 @@ if (!function_exists('array_last_key')) {
         }
 
         foreach ($reversedArray as $key => $value) {
-            if ($callback($key)) {
+            if ($callback($value, $key)) {
                 return $key;
             }
         }

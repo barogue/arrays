@@ -46,8 +46,8 @@ class ArrayLastKeyTest extends TestCase
     public function testWithCallback()
     {
         $array = [1, 2, 3, 4];
-        $this->assertSame(2, array_last_key($array, function ($value) {
-            return $value < 3;
+        $this->assertSame(2, array_last_key($array, function ($value, $key) {
+            return $key < 3;
         }));
         $this->assertEquals([1, 2, 3, 4], $array);
     }
@@ -55,12 +55,21 @@ class ArrayLastKeyTest extends TestCase
     public function testWithCallbackDefault()
     {
         $array = [1, 2, 3, 4];
-        $this->assertSame(null, array_last_key($array, function ($value) {
-            return $value < -100;
+        $this->assertSame(null, array_last_key($array, function ($value, $key) {
+            return $key < -100;
         }));
-        $this->assertSame('test', array_last_key($array, function ($value) {
-            return $value < -100;
+        $this->assertSame('test', array_last_key($array, function ($value, $key) {
+            return $key < -100;
         }, 'test'));
+        $this->assertEquals([1, 2, 3, 4], $array);
+    }
+
+    public function testWithCallbackMatchValue()
+    {
+        $array = [1, 2, 3, 4];
+        $this->assertSame(1, array_last_key($array, function ($value) {
+            return $value < 3;
+        }));
         $this->assertEquals([1, 2, 3, 4], $array);
     }
 }
