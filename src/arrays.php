@@ -416,6 +416,28 @@ if (!function_exists('array_set')) {
     }
 }
 
+if (!function_exists('array_shift_many')) {
+    /**
+     * Set a value in the array using dot notation for nested sets
+     *
+     * @param array &$array
+     * @param int $elements
+     *
+     * @return array|null
+     */
+    function array_shift_many(array &$array, int $elements): ?array
+    {
+        if ($elements <= 0) {
+            return null;
+        }
+        $results = [];
+        for ($i = 0; $i < $elements; $i++) {
+            $results[] = array_shift($array);
+        }
+        return $results;
+    }
+}
+
 if (!function_exists('array_shuffle')) {
     /**
      * Shuffle an array while optionally keeping the keys intact

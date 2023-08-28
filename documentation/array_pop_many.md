@@ -1,6 +1,6 @@
 ## Description
 
-Pop multiple elements off the end of array
+Pop multiple elements off the end of an array
 
 ```php
 array_pop_many(array $array, int $elements): array|null
