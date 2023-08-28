@@ -103,6 +103,7 @@ Below you can find links to the documentation for the new features.
 | [array_last](documentation/array_last.md)           | Get the last entry in the array                                                                           |
 | [array_last_key](documentation/array_last_key.md)   | Get the last key in the array                                                                             |
 | [array_only](documentation/array_only.md)           | Return a subset of the array by passing in an array of keys to keep                                       |
+| [array_pop_many](documentation/array_pop_many.md)   | Pop multiple elements off the end of array                                                                |
 | [array_pull](documentation/array_pull.md)           | Return and remove a key in the array using dot notation for nested arrays                                 |
 | [array_random](documentation/array_random.md)       | Picks one or more random entries out of an array, and returns the value (or values) of the random entries |
 | [array_set](documentation/array_set.md)             | Set a key in the array using dot notation for nested arrays                                               |

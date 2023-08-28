@@ -324,6 +324,32 @@ if (!function_exists('array_only')) {
     }
 }
 
+if (!function_exists('array_pop_many')) {
+    /**
+     * Pop multiple elements off the end of array
+     *
+     * If number of elements is less than 1, then the method will return null.
+     *
+     * For each element being popped off, it's value will be added to the return array. If the array is empty at the time, the returned value will be null.
+     *
+     * @param array &$array
+     * @param int $elements
+     *
+     * @return array|null
+     */
+    function array_pop_many(array &$array, int $elements): ?array
+    {
+        if ($elements <= 0) {
+            return null;
+        }
+        $results = [];
+        for ($i = 0; $i < $elements; $i++) {
+            $results[] = array_pop($array);
+        }
+        return $results;
+    }
+}
+
 if (!function_exists('array_pull')) {
     /**
      * Return and remove a value from the array using dot notation for nested sets
